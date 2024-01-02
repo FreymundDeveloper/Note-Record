@@ -4,12 +4,12 @@ import { GlobalStyles } from './themes/Style';
 import Home from './home/Home';
 
 export const App = () => {
-  return (
-    <Theme>
-        <GlobalStyles />
-        <Home />
-    </Theme>
-  );
+    return (
+      <Theme>
+          <GlobalStyles />
+          <Home />
+      </Theme>
+    );
 }
 
 export default App;

@@ -2,9 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface ActionButtonProps {
-  onClick: () => void;
-  children: React.ReactNode;
+    onClick: () => void;
+    children: React.ReactNode;
 }
+
+export const ActionButton: React.FC<ActionButtonProps> = ({ onClick, children }) => {
+    return <StyledButton onClick={onClick}>{children}</StyledButton>;
+};
 
 const StyledButton = styled.button`
   background: ${(props) => props.theme.color.buttonColor};
@@ -18,7 +22,3 @@ const StyledButton = styled.button`
     background-color: #a7981a;
   }
 `;
-
-export const ActionButton: React.FC<ActionButtonProps> = ({ onClick, children }) => {
-  return <StyledButton onClick={onClick}>{children}</StyledButton>;
-};

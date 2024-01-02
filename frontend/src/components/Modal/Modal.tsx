@@ -5,16 +5,16 @@ import { Theme } from '../../themes/Theme';
 
 interface ModalProps {
     isOpen: boolean;
-    period: number;
+    content: string;
     onClose: () => void;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, period, onClose }) => {
+export const Modal: React.FC<ModalProps> = ({ isOpen, content, onClose }) => {
   return (
     <ModalOverlay isOpen={isOpen}>
         <ModalContent>
             <ContentSection>
-                <Title period={period} modelSmall={false} />
+                <Title contentTitle={content} modelSmall={1} />
             </ContentSection>
             <ButtonSection>
                 <ActionButton onClick={onClose}>Confirmar</ActionButton>

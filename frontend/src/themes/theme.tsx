@@ -1,13 +1,12 @@
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
 
 const bodyColor = '#000000',
     modalColor = '#2b2b2b',
-    buttonColor = '#ffee00',
+    buttonColor = '#fffb00',
     biologyCard = '#ff00ea',
     artCard = '#00ccff',
     geographyCard = '#ff8800',
     sociologyCard = '#7700ff';
-
 
 const theme = {
     color: {
@@ -29,6 +28,6 @@ interface Props {
 
 export const Theme: React.FC<Props> = ( { children } ) => {
     return (
-        <ThemeProvider theme={theme}> {children} </ThemeProvider>
-    )
+        <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
+    );
 }

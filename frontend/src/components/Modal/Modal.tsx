@@ -1,19 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ActionButton } from '../Button/ActionButton';
+import { ActionButton, Title } from '../../components'
 import { Theme } from '../../themes/Theme';
 
 interface ModalProps {
     isOpen: boolean;
+    period: number;
     onClose: () => void;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+export const Modal: React.FC<ModalProps> = ({ isOpen, period, onClose }) => {
   return (
     <ModalOverlay isOpen={isOpen}>
         <ModalContent>
             <ContentSection>
-                <h1>Test</h1>
+                <Title period={period} modelSmall={false} />
             </ContentSection>
             <ButtonSection>
                 <ActionButton onClick={onClose}>Confirmar</ActionButton>

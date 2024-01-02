@@ -15,7 +15,7 @@ const Home: React.FC = () => {
     return (
         <div>
             <button onClick={handleOpenModal}>Open</button>
-            <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
+            <Modal isOpen={isModalOpen} period={1} onClose={handleCloseModal} />
         </div>
     );
 };

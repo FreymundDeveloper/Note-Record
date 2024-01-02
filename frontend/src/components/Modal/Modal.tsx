@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { ActionButton, Title } from '../../components'
-import { Theme } from '../../themes/Theme';
+import { ActionButton, Title, CardModal } from '../../components'
+//import { Theme } from '../../themes/Theme';
 
 interface ModalProps {
     isOpen: boolean;
@@ -10,11 +10,17 @@ interface ModalProps {
 }
 
 export const Modal: React.FC<ModalProps> = ({ isOpen, content, onClose }) => {
+    const [selectedCard, setSelectedCard] = useState<number>(0);
+
+    const handleCardClick = (value: number) => {
+        setSelectedCard(value);
+    };
   return (
     <ModalOverlay isOpen={isOpen}>
         <ModalContent>
             <ContentSection>
-                <Title contentTitle={content} modelSmall={1} />
+                <Title contentTitle={content} modeling={1} />
+                <CardModal onCardClick={handleCardClick} onClose={onClose}></CardModal>
             </ContentSection>
             <ButtonSection>
                 <ActionButton onClick={onClose}>Confirmar</ActionButton>

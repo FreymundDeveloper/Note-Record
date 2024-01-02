@@ -3,22 +3,22 @@ import styled from 'styled-components';
 
 interface TitleProps {
   contentTitle: string;
-  modelSmall: number;
+  modeling: number;
 }
 
-export const Title: React.FC<TitleProps> = ({ contentTitle, modelSmall }) => {
-  return <StyledTitle modelSmall={modelSmall}>{contentTitle}</StyledTitle>;
+export const Title: React.FC<TitleProps> = ({ contentTitle, modeling }) => {
+  return <StyledTitle modeling={modeling}>{contentTitle}</StyledTitle>;
 };
 
-const StyledTitle = styled.h2<{ modelSmall: number }>`
+const StyledTitle = styled.h2<{ modeling: number }>`
     font-size: ${(props) => {
-        switch (props.modelSmall) {
+        switch (props.modeling) {
             case 1:
                 return '2.5em';
             case 2:
                 return '1em';
             case 3:
-                return '0.6em';
+                return '0.65em';
             default:
                 return '2.5em';
         }

@@ -1,7 +1,7 @@
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 
 const bodyColor = '#000000',
-    modalColor = '#2b2b2b',
+    modalColor = '#161616',
     buttonColor = '#fffb00',
     biologyCard = '#ff00ea',
     artCard = '#00ccff',

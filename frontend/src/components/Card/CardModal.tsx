@@ -33,16 +33,16 @@ export const CardModal: React.FC<CardModalProps> = ({ onCardClick, onClose }) =>
 
   return (
     <ContentContainer>
-        <TitleContainer moreSpace={false}>
+        <TitleContainer spaced={false}>
             <Title contentTitle={"Disciplina"} modeling={2} />
         </TitleContainer>
         <CardContainer>
-            <Card color="biologyCard" onClick={() => handleCardClick(1)} isSelected={selectedCard === 1}>Card 1</Card>
-            <Card color="artCard" onClick={() => handleCardClick(2)} isSelected={selectedCard === 2}>Card 2</Card>
-            <Card color="geographyCard" onClick={() => handleCardClick(3)} isSelected={selectedCard === 3}>Card 3</Card>
-            <Card color="sociologyCard" onClick={() => handleCardClick(4)} isSelected={selectedCard === 4}>Card 4</Card>
+            <Card color="biologyCard" onClick={() => handleCardClick(1)} isSelected={selectedCard === 1}><span>Biologia</span></Card>
+            <Card color="artCard" onClick={() => handleCardClick(2)} isSelected={selectedCard === 2}><span>Artes</span></Card>
+            <Card color="geographyCard" onClick={() => handleCardClick(3)} isSelected={selectedCard === 3}><span>Geografia</span></Card>
+            <Card color="sociologyCard" onClick={() => handleCardClick(4)} isSelected={selectedCard === 4}><span>Sociologia</span></Card>
         </CardContainer>
-        <TitleContainer moreSpace={true}>
+        <TitleContainer spaced={true}>
             <Title contentTitle={"Nota"} modeling={3} />
         </TitleContainer>
         <Input type="number" value={inputValue} onChange={(e) => setInputValue(parseFloat(e.target.value))} />
@@ -65,10 +65,19 @@ const CardContainer = styled.div`
 
 const Card = styled.div<{ color: string; isSelected: boolean }>`
     cursor: pointer;
-    padding: 15px 48px;
-    border-radius: 15px;
-    background-color: ${(props) => darken(0.3, props.theme.color[props.color])};
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: ${(props) => darken(0.4, props.theme.color[props.color])};
     transition: background-color 0.3s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+        color: white;
+    }
 
     ${(props) =>
         props.isSelected &&
@@ -84,6 +93,6 @@ const Input = styled.input`
     border-radius: 8px;
 `;
 
-const TitleContainer = styled.div<{ moreSpace?: boolean }>`
-    margin-top: ${(props) => (props.moreSpace ? '2px' : '40px')};
+const TitleContainer = styled.div<{ spaced?: boolean }>`
+    margin-top: ${(props) => (props.spaced ? '2px' : '40px')};
 `;

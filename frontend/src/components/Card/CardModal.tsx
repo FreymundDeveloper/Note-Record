@@ -6,6 +6,8 @@ import { Title, InputNote } from '../../components'
 interface CardModalProps {
     onCardClick: (value: number) => void;
     onClose: () => void;
+    selectedCard: number;
+    defaultSelectedCard?: number;
 }
 
 const CardColors = {
@@ -15,21 +17,19 @@ const CardColors = {
     4: 'sociologyCard',
 };
 
-export const CardModal: React.FC<CardModalProps> = ({ onCardClick, onClose }) => {
-    const [inputValue, setInputValue] = useState<string>('');
-    const [selectedCard, setSelectedCard] = useState<number | null>(null);
-  
+export const CardModal: React.FC<CardModalProps> = ({ onCardClick, onClose, selectedCard, defaultSelectedCard = 1 }) => {
+    const [inputValue, setInputValue] = useState<string>(defaultSelectedCard.toString());
+    const [localSelectedCard, setLocalSelectedCard] = useState<number | null>(defaultSelectedCard);
+
     const handleCardClick = (value: number) => {
         setInputValue(value.toString());
         onCardClick(value);
-        setSelectedCard(value);
+        setLocalSelectedCard(value);
     };
 
     useEffect(() => {
-        return () => {
-            setSelectedCard(null);
-        };
-      }, [onClose]);
+        setInputValue(selectedCard.toString());
+    }, [selectedCard]);
 
   return (
     <ContentContainer>

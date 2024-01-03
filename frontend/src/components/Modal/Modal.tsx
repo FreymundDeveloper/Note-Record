@@ -10,20 +10,29 @@ interface ModalProps {
 }
 
 export const Modal: React.FC<ModalProps> = ({ isOpen, content, onClose }) => {
-    const [selectedCard, setSelectedCard] = useState<number>(0);
+    const [selectedCard, setSelectedCard] = useState<number>(1);
 
     const handleCardClick = (value: number) => {
         setSelectedCard(value);
+    };
+
+    const handleConfirmClick = () => {
+        if (selectedCard < 4) {
+            handleCardClick(selectedCard ? selectedCard + 1 : 1);
+        } else {
+            setSelectedCard(1)
+            onClose();
+        }
     };
   return (
     <ModalOverlay isOpen={isOpen}>
         <ModalContent>
             <ContentSection>
                 <Title contentTitle={content} modeling={1} />
-                <CardModal onCardClick={handleCardClick} onClose={onClose}></CardModal>
+                <CardModal onCardClick={handleCardClick} onClose={onClose} selectedCard={selectedCard} defaultSelectedCard={selectedCard}></CardModal>
             </ContentSection>
             <ButtonSection>
-                <ActionButton onClick={onClose}>Confirmar</ActionButton>
+                <ActionButton onClick={handleConfirmClick}>Confirmar</ActionButton>
             </ButtonSection>
         </ModalContent>
     </ModalOverlay>

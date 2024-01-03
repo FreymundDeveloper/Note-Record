@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { darken } from 'polished';
 import styled from 'styled-components';
-import { Title } from '../../components'
+import { Title, InputNote } from '../../components'
 
 interface CardModalProps {
     onCardClick: (value: number) => void;
@@ -16,11 +16,11 @@ const CardColors = {
 };
 
 export const CardModal: React.FC<CardModalProps> = ({ onCardClick, onClose }) => {
-    const [inputValue, setInputValue] = useState<number>(0);
+    const [inputValue, setInputValue] = useState<string>('');
     const [selectedCard, setSelectedCard] = useState<number | null>(null);
   
     const handleCardClick = (value: number) => {
-        setInputValue(value);
+        setInputValue(value.toString());
         onCardClick(value);
         setSelectedCard(value);
     };
@@ -45,7 +45,7 @@ export const CardModal: React.FC<CardModalProps> = ({ onCardClick, onClose }) =>
         <TitleContainer spaced={true}>
             <Title contentTitle={"Nota"} modeling={3} />
         </TitleContainer>
-        <Input type="number" value={inputValue} onChange={(e) => setInputValue(parseFloat(e.target.value))} />
+        <InputNote value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
     </ContentContainer>
   );
 };
@@ -67,7 +67,7 @@ const Card = styled.div<{ color: string; isSelected: boolean }>`
     cursor: pointer;
     width: 150px;
     height: 50px;
-    border-radius: 20px;
+    border-radius: 16px;
     background-color: ${(props) => darken(0.4, props.theme.color[props.color])};
     transition: background-color 0.3s ease;
 
@@ -84,13 +84,6 @@ const Card = styled.div<{ color: string; isSelected: boolean }>`
         `
         background-color: ${props.theme.color[props.color]};
     `}
-`;
-
-const Input = styled.input`
-    margin-top: 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
 `;
 
 const TitleContainer = styled.div<{ spaced?: boolean }>`

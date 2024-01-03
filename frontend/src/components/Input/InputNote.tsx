@@ -1,0 +1,33 @@
+import React from 'react';
+import styled from 'styled-components';
+
+interface InputNoteProps {
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export const InputNote: React.FC<InputNoteProps> = ({ value, onChange }) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const regex = /^-?\d*\.?\d*$/;
+        if (regex.test(e.target.value) || e.target.value === '') {
+            onChange(e);
+        }
+    };
+
+    return (
+        <StyledInput type="text" value={value === '0' ? '' : value} onChange={handleInputChange} maxLength={10} />
+    );
+};
+
+const StyledInput = styled.input`
+    margin-top: 0;
+    padding: 15px;
+    border: 3px solid #4b4949;
+    border-radius: 12px;
+    color: #4b4949;
+    background-color: black;
+    width: 60px;
+    font-size: 1.4em;
+    text-align: center;
+    letter-spacing: 0.02em;
+`;

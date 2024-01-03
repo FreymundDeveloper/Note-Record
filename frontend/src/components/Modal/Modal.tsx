@@ -40,7 +40,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, content, onClose }) => {
                 <CardModal onCardClick={handleCardClick} onClose={onClose} selectedCard={selectedCard} defaultSelectedCard={selectedCard}></CardModal>
             </ContentSection>
             <ButtonSection>
-                <ButtonAction onClick={handleConfirmClick}>Confirmar</ButtonAction>
+                <ButtonAction onClick={handleConfirmClick} sized={'modal'}>Confirmar</ButtonAction>
             </ButtonSection>
         </ModalContent>
     </ModalOverlay>

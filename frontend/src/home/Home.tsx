@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Modal } from '../components';
+import styled from 'styled-components';
+import { Modal, ContainerTopic } from '../components';
 
-const Home: React.FC = () => {
+export const Home: React.FC = () => {
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
     const handleOpenModal = () => {
@@ -13,11 +14,26 @@ const Home: React.FC = () => {
     };
 
     return (
-        <div>
-            <button onClick={handleOpenModal}>Open</button>
+        <ContainerHome>
+            <ContainerTopic content="Bimestre 1" cardText="Lançar Nota" onButtonClick={handleOpenModal} />
             <Modal isOpen={isModalOpen} content={"Bimestre 1"} onClose={handleCloseModal} />
-        </div>
+        </ContainerHome>
     );
 };
+
+export const ContainerHome = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    width: 1200px;
+    margin: 0 auto;
+    margin-top: 40px;
+
+    @media (max-width: 548px) {
+        max-width: 400px;
+    }
+`;
 
 export default Home;

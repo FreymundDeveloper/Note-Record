@@ -6,11 +6,12 @@ import { ButtonAction, Title, CardModal, ButtonClose } from '../../components'
 interface ModalProps {
     isOpen: boolean;
     content: string;
+    userSelectedCard?: number;
     onClose: () => void;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, content, onClose }) => {
-    const [selectedCard, setSelectedCard] = useState<number>(1);
+export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard = 1, onClose }) => {
+    const [selectedCard, setSelectedCard] = useState<number>(userSelectedCard);
 
     const handleCardClick = (value: number) => {
         setSelectedCard(value);
@@ -25,7 +26,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, content, onClose }) => {
     };
 
     const handleCloseClick = () => {
-        setSelectedCard(1);
+        setSelectedCard(userSelectedCard);
         onClose();
     };
 

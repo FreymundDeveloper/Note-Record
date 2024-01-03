@@ -27,13 +27,12 @@ interface CardMainProps {
 }
 
 export const CardMain: React.FC<CardMainProps> = ({ title, data, note, onButtonClick }) => {
-
     return (
         <StyledCardMain>
         <StyledCard title={title}>
             <Content>
                 <TitleContent>
-                    <Title contentTitle={title} modeling={2} ></Title>
+                    <Button onClick={onButtonClick}><Title contentTitle={title} modeling={2} ></Title></Button>
                     <Title contentTitle={data} modeling={3} ></Title>
                 </TitleContent>
                 <NoteContainer title={title}>
@@ -48,46 +47,50 @@ export const CardMain: React.FC<CardMainProps> = ({ title, data, note, onButtonC
 };
 
 const StyledCardMain = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 188px;
-  height: 165px;
-  background-color: ${(props) => props.theme.color.bodyColor};
-  border-radius: 18px;
-  padding-right: 10px;
-  position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 188px;
+    height: 165px;
+    background-color: ${(props) => props.theme.color.bodyColor};
+    border-radius: 18px;
+    padding-right: 10px;
+    position: relative;
 `;
 
 const StyledCard = styled.div<{ title: string; theme: ThemeType }>`
-  width: 175px;
-  height: 165px;
-  background-color: ${(props) => getCardColor(props.title, props.theme)};
-  border-radius: 18px;
-  overflow: hidden;
+    width: 175px;
+    height: 165px;
+    background-color: ${(props) => getCardColor(props.title, props.theme)};
+    border-radius: 18px;
+    overflow: hidden;
 `;
 
 const TitleContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  padding: 5px 0px 40px 15px;
-  color: #fff;
-  > * {
-    margin-bottom: 8px;
-  }
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding: 5px 0px 40px 15px;
+    color: #fff;
+    > * {
+        margin-bottom: 8px;
+    }
+`;
+
+const Button = styled.div`
+    cursor: pointer;
 `;
 
 const Content = styled.div`
-  padding: 15px 0px;
+    padding: 15px 0px;
 `;
 
 const NoteContainer = styled.div<{ title: string; theme: ThemeType }>`
-  display: flex;
-  align-items: center;
-  background-color: ${(props) => darken(0.3, getCardColor(props.title, props.theme))};
-  margin-bottom: 0;
-  height: 40px;
+    display: flex;
+    align-items: center;
+    background-color: ${(props) => darken(0.3, getCardColor(props.title, props.theme))};
+    margin-bottom: 0;
+    height: 40px;
 `;
 
 const NoteIcon = styled.span`

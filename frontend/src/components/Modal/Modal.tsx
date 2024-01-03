@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { ButtonAction, Title, CardModal } from '../../components'
+import { ButtonAction, Title, CardModal, ButtonClose } from '../../components'
 //import { Theme } from '../../themes/Theme';
 
 interface ModalProps {
@@ -20,15 +20,23 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, content, onClose }) => {
         if (selectedCard < 4) {
             handleCardClick(selectedCard ? selectedCard + 1 : 1);
         } else {
-            setSelectedCard(1)
-            onClose();
+            handleCloseClick();
         }
     };
+
+    const handleCloseClick = () => {
+        setSelectedCard(1);
+        onClose();
+    };
+    
   return (
     <ModalOverlay isOpen={isOpen}>
         <ModalContent>
             <ContentSection>
-                <Title contentTitle={content} modeling={1} />
+                <TitleContainer>
+                    <Title contentTitle={content} modeling={1} />
+                    <ButtonClose onClose={handleCloseClick} />
+                </TitleContainer>
                 <CardModal onCardClick={handleCardClick} onClose={onClose} selectedCard={selectedCard} defaultSelectedCard={selectedCard}></CardModal>
             </ContentSection>
             <ButtonSection>
@@ -68,6 +76,13 @@ const ModalContent = styled.div`
 const ContentSection = styled.div`
     flex-grow: 1;
     padding: 10px 30px;
+`;
+
+const TitleContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
 `;
 
 const ButtonSection = styled.div`

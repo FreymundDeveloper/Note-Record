@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Title } from '../Text/Title';
-import { ThemeType } from '../../themes/Theme';
 import { darken } from 'polished';
+import { ThemeType } from '../../themes/Theme';
+import { Title, ButtonDelete } from '../../components';
 
 const getCardColor = (title: string, themes: ThemeType ) => {
     switch (title) {
@@ -42,7 +42,7 @@ export const CardMain: React.FC<CardMainProps> = ({ title, data, note, onButtonC
                 </NoteContainer>
             </Content>
         </StyledCard>
-        <Button onClick={onButtonClick}>X</Button>
+        <ButtonDelete onClick={onButtonClick} />
         </StyledCardMain>
     );
 };
@@ -76,17 +76,6 @@ const TitleContent = styled.div`
   > * {
     margin-bottom: 8px;
   }
-`;
-
-const Button = styled.button`
-  background-color: transparent;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  font-size: 18px;
 `;
 
 const Content = styled.div`

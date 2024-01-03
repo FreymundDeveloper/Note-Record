@@ -1,5 +1,6 @@
 export * from './Button/ButtonAction';
 export * from './Button/ButtonClose';
+export * from './Button/ButtonDelete';
 export * from './Modal/Modal';
 export * from './Card/CardMain';
 export * from './Card/CardModal';

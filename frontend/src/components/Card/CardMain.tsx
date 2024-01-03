@@ -1,6 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Title } from '../Text/Title';
+import { ThemeType } from '../../themes/Theme';
+import { darken } from 'polished';
+
+const getCardColor = (title: string, themes: ThemeType ) => {
+    switch (title) {
+        case 'Biologia':
+            return themes.color.biologyCard;
+        case 'Artes':
+            return themes.color.artCard;
+        case 'Geografia':
+            return themes.color.geographyCard;
+        case 'Sociologia':
+            return themes.color.sociologyCard;
+        default:
+            return themes.color.biologyCard;
+    }
+};
 
 interface CardMainProps {
   title: string;
@@ -10,41 +27,42 @@ interface CardMainProps {
 }
 
 export const CardMain: React.FC<CardMainProps> = ({ title, data, note, onButtonClick }) => {
-  return (
-    <StyledCardMain>
-      <StyledCard>
-        <Content>
-            <TitleContent>
-                <Title contentTitle={title} modeling={2} ></Title>
-                <Title contentTitle={data} modeling={3} ></Title>
-            </TitleContent>
-            <NoteContainer>
-                <NoteIcon>X</NoteIcon>
-                <NoteLabel>{note}</NoteLabel>
-            </NoteContainer>
-        </Content>
-      </StyledCard>
-      <Button onClick={onButtonClick}>X</Button>
-    </StyledCardMain>
-  );
+
+    return (
+        <StyledCardMain>
+        <StyledCard title={title}>
+            <Content>
+                <TitleContent>
+                    <Title contentTitle={title} modeling={2} ></Title>
+                    <Title contentTitle={data} modeling={3} ></Title>
+                </TitleContent>
+                <NoteContainer title={title}>
+                    <NoteIcon>X</NoteIcon>
+                    <NoteLabel>Nota: {note}</NoteLabel>
+                </NoteContainer>
+            </Content>
+        </StyledCard>
+        <Button onClick={onButtonClick}>X</Button>
+        </StyledCardMain>
+    );
 };
 
 const StyledCardMain = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 178px;
+  width: 188px;
   height: 165px;
-  background-color: #1127f0;
+  background-color: ${(props) => props.theme.color.bodyColor};
   border-radius: 18px;
   padding-right: 10px;
   position: relative;
 `;
 
-const StyledCard = styled.div`
-  width: 165px;
+const StyledCard = styled.div<{ title: string; theme: ThemeType }>`
+  width: 175px;
   height: 165px;
-  background-color: #0c7a01;
+  background-color: ${(props) => getCardColor(props.title, props.theme)};
   border-radius: 18px;
   overflow: hidden;
 `;
@@ -75,10 +93,10 @@ const Content = styled.div`
   padding: 15px 0px;
 `;
 
-const NoteContainer = styled.div`
+const NoteContainer = styled.div<{ title: string; theme: ThemeType }>`
   display: flex;
   align-items: center;
-  background-color: #007bff;
+  background-color: ${(props) => darken(0.3, getCardColor(props.title, props.theme))};
   margin-bottom: 0;
   height: 40px;
 `;

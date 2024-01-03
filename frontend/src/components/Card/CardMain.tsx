@@ -2,22 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { darken } from 'polished';
 import { ThemeType } from '../../themes/Theme';
+import { getCardColor } from '../../utils/colorUtils';
 import { Title, ButtonDelete } from '../../components';
-
-const getCardColor = (title: string, themes: ThemeType ) => {
-    switch (title) {
-        case 'Biologia':
-            return themes.color.biologyCard;
-        case 'Artes':
-            return themes.color.artCard;
-        case 'Geografia':
-            return themes.color.geographyCard;
-        case 'Sociologia':
-            return themes.color.sociologyCard;
-        default:
-            return themes.color.biologyCard;
-    }
-};
 
 interface CardMainProps {
   title: string;

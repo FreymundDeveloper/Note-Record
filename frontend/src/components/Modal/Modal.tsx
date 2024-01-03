@@ -28,7 +28,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, content, onClose }) => {
         setSelectedCard(1);
         onClose();
     };
-    
+
   return (
     <ModalOverlay isOpen={isOpen}>
         <ModalContent>
@@ -71,6 +71,11 @@ const ModalContent = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
+
+    @media (max-width: 548px) {
+        max-width: 380px;
+        max-height: 400px;
+    }
 `;
 
 const ContentSection = styled.div`

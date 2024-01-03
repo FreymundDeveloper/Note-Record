@@ -59,8 +59,13 @@ const ContentContainer = styled.div`
 
 const CardContainer = styled.div`
     display: flex;
+    justify-content: center;
     gap: 20px;
     margin-top: 0;
+
+    @media (max-width: 548px) {
+        flex-wrap: wrap;
+    }
 `;
 
 const Card = styled.div<{ color: string; isSelected: boolean }>`

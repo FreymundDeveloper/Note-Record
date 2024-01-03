@@ -21,4 +21,8 @@ const StyledButton = styled.button`
   &:hover {
     background-color: #a7981a;
   }
+
+  @media (max-width: 548px) {
+    padding: 12px 32px;
+    }
 `;

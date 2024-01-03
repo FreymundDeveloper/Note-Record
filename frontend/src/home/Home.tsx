@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Modal, ContainerTopic } from '../components';
+import { Modal, ContainerTopic, CardMain } from '../components';
 
 export const Home: React.FC = () => {
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
@@ -16,6 +16,7 @@ export const Home: React.FC = () => {
     return (
         <ContainerHome>
             <ContainerTopic content="Bimestre 1" cardText="Lançar Nota" onButtonClick={handleOpenModal} />
+            <CardMain title="Sociologia" data="02/10/1807" note="Nota do Card" onButtonClick={handleOpenModal} />
             <Modal isOpen={isModalOpen} content={"Bimestre 1"} onClose={handleCloseModal} />
         </ContainerHome>
     );
@@ -27,7 +28,7 @@ export const ContainerHome = styled.div`
     align-items: center;
     flex-direction: column;
     padding: 10px;
-    width: 1200px;
+    width: 1000px;
     margin: 0 auto;
     margin-top: 40px;
 

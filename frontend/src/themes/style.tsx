@@ -14,7 +14,7 @@ export const GlobalStyles = createGlobalStyle<{ theme?: ThemeType }>`
         align-items: center;
         flex-direction: column;
         background-color: black;
-        width: 1200px;
+        width: 1000px;
         border-radius: 8px;
         margin: 0 auto;
     }

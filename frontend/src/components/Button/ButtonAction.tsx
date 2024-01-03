@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface ActionButtonProps {
+interface ButtonActionProps {
     onClick: () => void;
     children: React.ReactNode;
 }
 
-export const ActionButton: React.FC<ActionButtonProps> = ({ onClick, children }) => {
+export const ButtonAction: React.FC<ButtonActionProps> = ({ onClick, children }) => {
     return <StyledButton onClick={onClick}>{children}</StyledButton>;
 };
 

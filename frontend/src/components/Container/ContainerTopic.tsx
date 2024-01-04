@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ButtonAction, Title } from '../../components';
+import { ButtonAction, Title, Tooltip } from '../../components';
 
 interface ContainerTopicProps {
     content: string;
@@ -17,7 +17,9 @@ export const ContainerTopic: React.FC<ContainerTopicProps> = ({ content, cardTex
       <CardContainer>
         <Card>
           <CardText>{cardText}</CardText>
-          <ButtonAction onClick={onButtonClick}>&#43;</ButtonAction>
+          <Tooltip text="Registrar notas">
+            <ButtonAction onClick={onButtonClick}>&#43;</ButtonAction>
+          </Tooltip>
         </Card>
       </CardContainer>
     </Container>

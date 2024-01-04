@@ -5,6 +5,7 @@ import { faSquarePollVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ThemeType } from '../../themes/Theme';
 import { getCardColor } from '../../utils/colorUtils';
+import { Tooltip } from '../Text/Tooltip';
 
 interface ContainerNoteProps {
   title: string;
@@ -27,7 +28,9 @@ export const ContainerNote: React.FC<ContainerNoteProps> = ({ title, theme, note
 
     return (
         <NoteContainerStyled title={title} theme={theme} noteColor={noteColor}>
-            <NoteIcon color={noteColor}><FontAwesomeIcon icon={faSquarePollVertical} /></NoteIcon>
+            <Tooltip text="Nota registrada">
+              <NoteIcon color={noteColor}><FontAwesomeIcon icon={faSquarePollVertical} /></NoteIcon>
+            </Tooltip>
             <NoteLabel color={noteColor}>Nota: {note}</NoteLabel>
         </NoteContainerStyled>
     );

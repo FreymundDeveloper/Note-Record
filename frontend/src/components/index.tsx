@@ -7,4 +7,5 @@ export * from './Card/CardModal';
 export * from './Container/ContainerNote';
 export * from './Container/ContainerTopic';
 export * from './Input/InputNote';
-export * from  './Text/Title';
+export * from './Text/Title';
+export * from './Text/Tooltip';

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Tooltip } from '../../components';
 
 interface ButtonDeleteProps {
     onClick: () => void;
@@ -9,7 +10,7 @@ interface ButtonDeleteProps {
 
 export const ButtonDelete: React.FC<ButtonDeleteProps> = ({ onClick }) => {
   return (
-    <ButtonStyled onClick={onClick}><FontAwesomeIcon icon={faTrashCan} /></ButtonStyled>
+    <ButtonStyled onClick={onClick}><Tooltip text="Deletar nota salva"><FontAwesomeIcon icon={faTrashCan} /></Tooltip></ButtonStyled>
   );
 };
 

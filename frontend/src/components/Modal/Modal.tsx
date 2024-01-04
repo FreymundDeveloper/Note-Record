@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { ButtonAction, Title, CardModal, ButtonClose } from '../../components'
+import { ButtonAction, Title, CardModal, ButtonClose, Tooltip } from '../../components'
 //import { Theme } from '../../themes/Theme';
 
 interface ModalProps {
@@ -40,12 +40,12 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard 
             <ContentSection>
                 <TitleContainer>
                     <Title contentTitle={content} modeling={1} />
-                    <ButtonClose onClose={handleCloseClick} />
+                    <Tooltip text="Fechar"><ButtonClose onClose={handleCloseClick} /></Tooltip>
                 </TitleContainer>
                 <CardModal onCardClick={handleCardClick} onClose={onClose} selectedCard={selectedCard} defaultSelectedCard={selectedCard}></CardModal>
             </ContentSection>
             <ButtonSection>
-                <ButtonAction onClick={handleConfirmClick} sized={'modal'}>Confirmar</ButtonAction>
+                <Tooltip text="Salvar Nota"><ButtonAction onClick={handleConfirmClick} sized={'modal'}>Confirmar</ButtonAction></Tooltip>
             </ButtonSection>
         </ModalContent>
     </ModalOverlay>

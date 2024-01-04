@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ThemeType } from '../../themes/Theme';
 import { getCardColor } from '../../utils/colorUtils';
-import { Title, ButtonDelete, ContainerNote } from '../../components';
+import { Title, ButtonDelete, ContainerNote, Tooltip } from '../../components';
 
 interface CardMainProps {
   title: string;
@@ -20,7 +20,9 @@ export const CardMain: React.FC<CardMainProps> = ({ title, data, note, onButtonC
             <StyledCard title={title}>
                 <Content>
                     <TitleContent>
-                        <Button onClick={onButtonClick}><Title contentTitle={title} modeling={2} ></Title></Button>
+                        <Tooltip text="Selcionar disciplina">
+                            <Button onClick={onButtonClick}><Title contentTitle={title} modeling={2} ></Title></Button>
+                        </Tooltip>
                         <Title contentTitle={formattedData} modeling={3} ></Title>
                     </TitleContent>
                     <ContainerNote title={title} note={note} />

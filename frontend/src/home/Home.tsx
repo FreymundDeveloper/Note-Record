@@ -5,6 +5,7 @@ import { Modal, ContainerTopic, CardMain } from '../components';
 export const Home: React.FC = () => {
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
     const [userSelection, setUserSelection] = useState<number>(1);
+    const [note, setNote] = useState<string>("5.0");
 
     const handleOpenModal = () => {
         setUserSelection(1);
@@ -12,7 +13,7 @@ export const Home: React.FC = () => {
     };
 
     const userOpenModal = () => {
-        setUserSelection(3);
+        setUserSelection(3); // Modal Select
         setModalOpen(true);
     };
 
@@ -21,11 +22,16 @@ export const Home: React.FC = () => {
         setUserSelection(1);
     };
 
+    const callDelete = () => {
+        setNote("")
+        //API Delete Logic ...
+    }
+
     return (
         <ContainerHome>
             <ContainerTopic content="Bimestre 1" cardText="Lançar Nota" onButtonClick={handleOpenModal} />
-            <CardMain title="Geografia" data="02/10/1807" note="5.0" onButtonClick={userOpenModal} />
-            <CardMain title="Sociologia" data="02/10/1899" note="9.0" onButtonClick={userOpenModal} />
+            <CardMain title="Geografia" data="02/10/1807" note={note} onButtonClick={userOpenModal} clearNote={callDelete} />
+            <CardMain title="Sociologia" data="02/10/1899" note={note} onButtonClick={userOpenModal} clearNote={callDelete} />
             <Modal userSelectedCard={userSelection} isOpen={isModalOpen} content={"Bimestre 1"} onClose={handleCloseModal} />
         </ContainerHome>
     );

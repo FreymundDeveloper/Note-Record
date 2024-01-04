@@ -9,9 +9,10 @@ interface CardMainProps {
   data: string;
   note: string;
   onButtonClick: () => void;
+  clearNote: () => void;
 }
 
-export const CardMain: React.FC<CardMainProps> = ({ title, data, note, onButtonClick }) => {
+export const CardMain: React.FC<CardMainProps> = ({ title, data, note, onButtonClick, clearNote }) => {
     const formattedData = data.trim() === '' ? '??/??/????' : data;
 
     return (
@@ -25,7 +26,7 @@ export const CardMain: React.FC<CardMainProps> = ({ title, data, note, onButtonC
                     <ContainerNote title={title} note={note} />
                 </Content>
             </StyledCard>
-        <ButtonDelete onClick={onButtonClick} />
+        <ButtonDelete onClick={clearNote} />
         </StyledCardMain>
     );
 };

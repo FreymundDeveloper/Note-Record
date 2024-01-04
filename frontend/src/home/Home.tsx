@@ -22,11 +22,6 @@ export const Home: React.FC = () => {
         setUserSelection(1);
     };
 
-    const callDelete = () => {
-        setNote("")
-        //API Delete Logic ...
-    }
-
     const exemp = { //Prototype From Routes Rest
         id: '1',
         details: [
@@ -55,10 +50,10 @@ export const Home: React.FC = () => {
 
     return (
         <ContainerHome>
-            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} onClearNote={callDelete} />
-            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} onClearNote={callDelete} />
-            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} onClearNote={callDelete} />
-            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} onClearNote={callDelete} />
+            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} />
+            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} />
+            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} />
+            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} />
             <Modal userSelectedCard={userSelection} isOpen={isModalOpen} content={"Bimestre "+exemp.id} onClose={handleCloseModal} />
         </ContainerHome>
     );

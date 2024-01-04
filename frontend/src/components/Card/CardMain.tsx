@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ThemeType } from '../../themes/Theme';
 import { getCardColor } from '../../utils/colorUtils';
@@ -9,11 +9,16 @@ interface CardMainProps {
   data: string;
   note: string;
   onButtonClick: () => void;
-  clearNote: () => void;
 }
 
-export const CardMain: React.FC<CardMainProps> = ({ title, data, note, onButtonClick, clearNote }) => {
+export const CardMain: React.FC<CardMainProps> = ({ title, data, note, onButtonClick }) => {
+    const [clearNote, setclearNote] = useState<string>(note);
     const formattedData = data.trim() === '' ? '??/??/????' : data;
+
+    const callDelete = () => {
+        setclearNote("")
+        //API Delete Logic ...
+    }
 
     return (
         <StyledCardMain>
@@ -25,10 +30,10 @@ export const CardMain: React.FC<CardMainProps> = ({ title, data, note, onButtonC
                         </Tooltip>
                         <Title contentTitle={formattedData} modeling={3} ></Title>
                     </TitleContent>
-                    <ContainerNote title={title} note={note} />
+                    <ContainerNote title={title} note={clearNote} />
                 </Content>
             </StyledCard>
-        <ButtonDelete onClick={clearNote} />
+        <ButtonDelete onClick={callDelete} />
         </StyledCardMain>
     );
 };

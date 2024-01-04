@@ -10,11 +10,10 @@ interface CardProps {
 interface ContainerCardProps {
     cardProps: CardProps;
     onCardButtonClick: (index: number) => void;
-    onClearNote: (index: number) => void;
     onButtonClick: () => void;
 }
 
-export const ContainerCard: React.FC<ContainerCardProps> = ({ cardProps, onCardButtonClick, onClearNote, onButtonClick }) => {
+export const ContainerCard: React.FC<ContainerCardProps> = ({ cardProps, onCardButtonClick, onButtonClick }) => {
     const { id, details } = cardProps;
 
     return (
@@ -23,7 +22,7 @@ export const ContainerCard: React.FC<ContainerCardProps> = ({ cardProps, onCardB
             <CardsContainer>
                 {details.map((detail, index) => (
                     <CardMain key={index} title={detail.discipline} data={detail.createdData} note={detail.note}
-                        onButtonClick={() => onCardButtonClick(index)} clearNote={() => onClearNote(index)} />
+                        onButtonClick={() => onCardButtonClick(index)} />
                 ))}
             </CardsContainer>
         </Container>

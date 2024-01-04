@@ -37,21 +37,9 @@ export const Tooltip: React.FC<TooltipProps> = ({ text, children }) => {
       }
     };
 
-    const showTooltipWithDelay = () => {
-        calculatePosition();
-
-        setTimeout(() => {
-          setTooltipVisible(true);
-
-          setTimeout(() => {
-            setTooltipVisible(false);
-          }, 1200);
-        }, 1000);
-      };
-
   return (
     <TooltipContainer
-      onMouseEnter={() => showTooltipWithDelay()}
+      onMouseEnter={() => {calculatePosition();setTooltipVisible(true)}}
       onMouseLeave={() => setTooltipVisible(false)}
     >
       {children}

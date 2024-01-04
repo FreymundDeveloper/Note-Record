@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Modal, ContainerTopic, CardMain } from '../components';
+import { Modal, ContainerCard } from '../components';
 
 export const Home: React.FC = () => {
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
@@ -27,11 +27,35 @@ export const Home: React.FC = () => {
         //API Delete Logic ...
     }
 
+    const exemp = { //Prototype From Routes Rest
+        id: '1',
+        details: [
+            {
+                discipline: 'Biologia',
+                createdData: '02/10/1807',
+                note: note
+            },
+            {
+                discipline: 'Artes',
+                createdData: '02/10/1899',
+                note: '5.0'
+            },
+            {
+                discipline: 'Geografia',
+                createdData: '02/10/1899',
+                note: '7.2'
+            },
+            {
+                discipline: 'Sociologia',
+                createdData: '02/10/1899',
+                note: '10.0'
+            }
+        ]
+    }
+
     return (
         <ContainerHome>
-            <ContainerTopic content="Bimestre 1" cardText="Lançar Nota" onButtonClick={handleOpenModal} />
-            <CardMain title="Geografia" data="02/10/1807" note={note} onButtonClick={userOpenModal} clearNote={callDelete} />
-            <CardMain title="Sociologia" data="02/10/1899" note={note} onButtonClick={userOpenModal} clearNote={callDelete} />
+            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} onClearNote={callDelete} />
             <Modal userSelectedCard={userSelection} isOpen={isModalOpen} content={"Bimestre 1"} onClose={handleCloseModal} />
         </ContainerHome>
     );

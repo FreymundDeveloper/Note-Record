@@ -5,6 +5,7 @@ export * from './Modal/Modal';
 export * from './Card/CardMain';
 export * from './Card/CardModal';
 export * from './Container/ContainerCard';
+export * from './Container/ContainerHome';
 export * from './Container/ContainerNote';
 export * from './Container/ContainerTopic';
 export * from './Input/InputNote';

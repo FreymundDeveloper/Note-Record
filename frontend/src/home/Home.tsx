@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Modal, ContainerCard } from '../components';
+import { Modal, ContainerCard, ContainerHome } from '../components';
 
 export const Home: React.FC = () => {
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
@@ -58,20 +57,5 @@ export const Home: React.FC = () => {
         </ContainerHome>
     );
 };
-
-export const ContainerHome = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 10px;
-    width: 1000px;
-    margin: 0 auto;
-    margin-top: 40px;
-
-    @media (max-width: 548px) {
-        max-width: 400px;
-    }
-`;
 
 export default Home;

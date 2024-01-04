@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ButtonAction, Title, CardModal, ButtonClose } from '../../components'
 //import { Theme } from '../../themes/Theme';
@@ -12,6 +12,10 @@ interface ModalProps {
 
 export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard = 1, onClose }) => {
     const [selectedCard, setSelectedCard] = useState<number>(userSelectedCard);
+
+    useEffect(() => {
+        if (selectedCard !== userSelectedCard) setSelectedCard(userSelectedCard);
+    }, [userSelectedCard]);
 
     const handleCardClick = (value: number) => {
         setSelectedCard(value);

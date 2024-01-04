@@ -4,20 +4,28 @@ import { Modal, ContainerTopic, CardMain } from '../components';
 
 export const Home: React.FC = () => {
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
+    const [userSelection, setUserSelection] = useState<number>(1);
 
     const handleOpenModal = () => {
+        setUserSelection(1);
+        setModalOpen(true);
+    };
+
+    const userOpenModal = () => {
+        setUserSelection(3);
         setModalOpen(true);
     };
 
     const handleCloseModal = () => {
         setModalOpen(false);
+        setUserSelection(1);
     };
 
     return (
         <ContainerHome>
             <ContainerTopic content="Bimestre 1" cardText="Lançar Nota" onButtonClick={handleOpenModal} />
-            <CardMain title="Geografia" data="02/10/1807" note="5.0" onButtonClick={handleOpenModal} />
-            <Modal userSelectedCard={3} isOpen={isModalOpen} content={"Bimestre 1"} onClose={handleCloseModal} />
+            <CardMain title="Geografia" data="02/10/1807" note="5.0" onButtonClick={userOpenModal} />
+            <Modal userSelectedCard={userSelection} isOpen={isModalOpen} content={"Bimestre 1"} onClose={handleCloseModal} />
         </ContainerHome>
     );
 };

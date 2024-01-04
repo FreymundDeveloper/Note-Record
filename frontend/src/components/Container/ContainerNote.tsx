@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { darken } from 'polished';
+import { faSquarePollVertical } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ThemeType } from '../../themes/Theme';
 import { getCardColor } from '../../utils/colorUtils';
 
@@ -25,7 +27,7 @@ export const ContainerNote: React.FC<ContainerNoteProps> = ({ title, theme, note
 
     return (
         <NoteContainerStyled title={title} theme={theme} noteColor={noteColor}>
-            <NoteIcon color={noteColor}>X</NoteIcon>
+            <NoteIcon color={noteColor}><FontAwesomeIcon icon={faSquarePollVertical} /></NoteIcon>
             <NoteLabel color={noteColor}>Nota: {note}</NoteLabel>
         </NoteContainerStyled>
     );

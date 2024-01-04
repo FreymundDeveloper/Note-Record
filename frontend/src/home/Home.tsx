@@ -4,7 +4,6 @@ import { Modal, ContainerCard, ContainerHome } from '../components';
 export const Home: React.FC = () => {
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
     const [userSelection, setUserSelection] = useState<number>(1);
-    const [note, setNote] = useState<string>("5.0");
 
     const handleOpenModal = () => {
         setUserSelection(1);
@@ -27,7 +26,7 @@ export const Home: React.FC = () => {
             {
                 discipline: 'Biologia',
                 createdData: '02/10/1807',
-                note: note
+                note: "5.0"
             },
             {
                 discipline: 'Artes',

@@ -30,9 +30,17 @@ export const ContainerCard: React.FC<ContainerCardProps> = ({ cardProps, onCardB
     );
 };
 
-const Container = styled.div``;
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
 
 const CardsContainer = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+
+    @media (max-width: 548px) {
+        flex-wrap: wrap;
+  }
 `;

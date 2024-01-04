@@ -56,7 +56,10 @@ export const Home: React.FC = () => {
     return (
         <ContainerHome>
             <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} onClearNote={callDelete} />
-            <Modal userSelectedCard={userSelection} isOpen={isModalOpen} content={"Bimestre 1"} onClose={handleCloseModal} />
+            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} onClearNote={callDelete} />
+            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} onClearNote={callDelete} />
+            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} onClearNote={callDelete} />
+            <Modal userSelectedCard={userSelection} isOpen={isModalOpen} content={"Bimestre "+exemp.id} onClose={handleCloseModal} />
         </ContainerHome>
     );
 };

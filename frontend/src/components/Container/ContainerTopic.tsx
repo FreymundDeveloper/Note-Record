@@ -31,7 +31,7 @@ const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
     width: 100%;
 `;
 
@@ -44,6 +44,7 @@ const CardContainer = styled.div`
     display: flex;
     align-items: center;
     border-radius: 8px;
+    margin-right: 10px;
 `;
 
 const Card = styled.div`

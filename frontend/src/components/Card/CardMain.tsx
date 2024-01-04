@@ -42,6 +42,8 @@ const StyledCardMain = styled.div`
     background-color: ${(props) => props.theme.color.bodyColor};
     border-radius: 18px;
     padding-right: 10px;
+    margin-right: 2px;
+    margin-top: 10px;
     position: relative;
 `;
 

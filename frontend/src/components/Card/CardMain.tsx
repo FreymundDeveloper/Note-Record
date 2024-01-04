@@ -12,13 +12,15 @@ interface CardMainProps {
 }
 
 export const CardMain: React.FC<CardMainProps> = ({ title, data, note, onButtonClick }) => {
+    const formattedData = data.trim() === '' ? '??/??/????' : data;
+
     return (
         <StyledCardMain>
             <StyledCard title={title}>
                 <Content>
                     <TitleContent>
                         <Button onClick={onButtonClick}><Title contentTitle={title} modeling={2} ></Title></Button>
-                        <Title contentTitle={data} modeling={3} ></Title>
+                        <Title contentTitle={formattedData} modeling={3} ></Title>
                     </TitleContent>
                     <ContainerNote title={title} note={note} />
                 </Content>

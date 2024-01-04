@@ -25,6 +25,7 @@ export const Home: React.FC = () => {
         <ContainerHome>
             <ContainerTopic content="Bimestre 1" cardText="Lançar Nota" onButtonClick={handleOpenModal} />
             <CardMain title="Geografia" data="02/10/1807" note="5.0" onButtonClick={userOpenModal} />
+            <CardMain title="Sociologia" data="02/10/1899" note="9.0" onButtonClick={userOpenModal} />
             <Modal userSelectedCard={userSelection} isOpen={isModalOpen} content={"Bimestre 1"} onClose={handleCloseModal} />
         </ContainerHome>
     );

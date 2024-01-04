@@ -4,6 +4,7 @@ export * from './Button/ButtonDelete';
 export * from './Modal/Modal';
 export * from './Card/CardMain';
 export * from './Card/CardModal';
+export * from './Container/ContainerNote';
 export * from './Container/ContainerTopic';
 export * from './Input/InputNote';
 export * from  './Text/Title';

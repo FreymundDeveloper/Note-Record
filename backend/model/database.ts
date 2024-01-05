@@ -35,7 +35,6 @@ Resultado.init({
     disciplina: {
         type: DataTypes.ENUM('Biologia', 'Artes', 'Geografia', 'Sociologia'),
         allowNull: false,
-        unique: 'uniqueBimestreDisciplina',
     },
     nota: {
         type: DataTypes.FLOAT,
@@ -59,10 +58,13 @@ Resultado.init({
 }, {
     sequelize,
     modelName: 'Resultado',
-});
-
-Resultado.addHook('beforeDefine', (attributes, options) => {
-    options.indexes = [{ unique: true, fields: ['bimestre', 'disciplina'], name: 'uniqueBimestreDisciplina' }];
+    indexes: [
+        {
+            unique: true,
+            fields: ['bimestre', 'disciplina'],
+            name: 'uniqueBimestreDisciplina',
+        },
+    ],
 });
 
 export { sequelize, Resultado };

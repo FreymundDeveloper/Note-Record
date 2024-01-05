@@ -25,31 +25,30 @@ app.post('/results', async (req: Request, res: Response) => {
     const { bimestre, disciplina, nota } = req.body;
 
     try {
-        const existingResult = await Resultado.findOne({
+        const [resultado, created] = await Resultado.findOrCreate({
             where: {
+                [Op.and]: [{ bimestre, disciplina }],
+            },
+            defaults: {
                 bimestre,
                 disciplina,
+                nota,
+                criadoEm: new Date(),
+                atualizadoEm: new Date(),
+                id: uuidv4(),
             },
         });
 
-        if (existingResult) {
+        if (!created) {
             return res.status(400).json({ error: 'Result with the same bimestre and disciplina already exists' });
         }
-
-        const resultado = await Resultado.create({
-            bimestre,
-            disciplina,
-            nota,
-            criadoEm: new Date(),
-            atualizadoEm: new Date(),
-            id: uuidv4(),
-        });
 
         res.json(resultado);
     } catch (error) {
         res.status(500).json({ error: 'Error creating result' });
     }
-});  
+});
+
 
 app.put('/results/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
@@ -86,6 +85,7 @@ app.put('/results/:id', async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Error updating result' });
     }
 });
+
 
 app.delete('/results/:id', async (req: Request, res: Response) => {
     const { id } = req.params;

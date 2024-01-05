@@ -17,17 +17,17 @@ const CardColors = {
 };
 
 export const CardModal: React.FC<CardModalProps> = ({ onCardClick, selectedCard, defaultSelectedCard = 1 }) => {
-    const [inputValue, setInputValue] = useState<string>(defaultSelectedCard.toString());
+    const [inputValue, setInputValue] = useState<string>("");
     const [localSelectedCard, setLocalSelectedCard] = useState<number | null>(defaultSelectedCard);
 
     const handleCardClick = (value: number) => {
-        setInputValue(value.toString());
+        setInputValue("");
         onCardClick(value);
         setLocalSelectedCard(value);
     };
 
     useEffect(() => {
-        setInputValue(selectedCard.toString());
+        setInputValue("");
     }, [selectedCard]);
 
   return (

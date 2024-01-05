@@ -64,5 +64,4 @@ const TooltipText = styled.div<TooltipTextProps>`
   border-radius: 8px;
   white-space: nowrap;
   font-size: 12px;
-  z-index: 1;
 `;

@@ -98,11 +98,16 @@ app.put('/results/:id', async (req: Request, res: Response) => {
 });
 
 
-app.delete('/results/:id', async (req: Request, res: Response) => {
-    const { id } = req.params;
+app.delete('/results/:bimester/:discipline', async (req: Request, res: Response) => {
+    const { bimester, discipline } = req.params;
 
     try {
-        const resultado = await Resultado.findByPk(id);
+        const resultado = await Resultado.findOne({
+            where: {
+                bimestre: bimester,
+                disciplina: discipline,
+            },
+        });
 
         if (!resultado) {
             return res.status(404).json({ error: 'Result not found' });
@@ -114,6 +119,7 @@ app.delete('/results/:id', async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Error deleting result' });
     }
 });
+
 
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);

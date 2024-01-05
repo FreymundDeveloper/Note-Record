@@ -42,22 +42,22 @@ export const mapBimesterStringToNumber = (bimester: string) => {
 export const createEmptyDetails = () => {
     return [
         {
-            discipline: 'Biologia',
+            discipline: 'BIOLOGIA',
             createdData: '',
             note: '',
         },
         {
-            discipline: 'Artes',
+            discipline: 'ARTES',
             createdData: '',
             note: '',
         },
         {
-            discipline: 'Geografia',
+            discipline: 'GEOGRAFIA',
             createdData: '',
             note: '',
         },
         {
-            discipline: 'Sociologia',
+            discipline: 'SOCIOLOGIA',
             createdData: '',
             note: '',
         },

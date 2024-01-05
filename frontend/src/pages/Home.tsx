@@ -1,17 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Modal, ContainerCard, ContainerHome } from '../components';
+import { adaptToEnglish, createEmptyDetails } from '../utils/routesUtils';
 
 export const Home: React.FC = () => {
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
     const [userSelection, setUserSelection] = useState<number>(1);
+    const [apiData, setApiData] = useState<any[]>([]);
 
-    const handleOpenModal = () => {
-        setUserSelection(1);
-        setModalOpen(true);
-    };
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const responseOne= await axios.get('http://localhost:3001/results?bimester=PRIMEIRO');
+                const dataOne = {
+                    id: 1,
+                    details: responseOne.data.length > 0 ? adaptToEnglish(responseOne.data) : createEmptyDetails()
+                };
 
-    const userOpenModal = () => {
-        setUserSelection(3); // Modal Select
+                const responseTwo = await axios.get('http://localhost:3001/results?bimester=SEGUNDO');
+                const dataTwo = {
+                    id: 2,
+                    details: responseTwo.data.length > 0 ? adaptToEnglish(responseTwo.data) : createEmptyDetails()
+                };
+
+                const responseThree = await axios.get('http://localhost:3001/results?bimester=TERCEIRO');
+                const dataThree = {
+                    id: 3,
+                    details: responseThree.data.length > 0 ? adaptToEnglish(responseThree.data) : createEmptyDetails()
+                };
+
+                const responseFour = await axios.get('http://localhost:3001/results?bimester=QUARTO');
+                const dataFour = {
+                    id: 4,
+                    details: responseFour.data.length > 0 ? adaptToEnglish(responseFour.data) : createEmptyDetails()
+                };
+
+                setApiData([dataOne, dataTwo, dataThree, dataFour]);
+            } catch (error) {
+                console.error('Error to found API:', error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    const handleOpenModal = (selectedCard: number) => {
+        setUserSelection(selectedCard);
         setModalOpen(true);
     };
 
@@ -20,39 +53,17 @@ export const Home: React.FC = () => {
         setUserSelection(1);
     };
 
-    const exemp = { //Prototype From Routes Rest
-        id: '1',
-        details: [
-            {
-                discipline: 'Biologia',
-                createdData: '02/10/1807',
-                note: "5.0"
-            },
-            {
-                discipline: 'Artes',
-                createdData: '02/10/1899',
-                note: '5.0'
-            },
-            {
-                discipline: 'Geografia',
-                createdData: '02/10/1899',
-                note: '7.2'
-            },
-            {
-                discipline: 'Sociologia',
-                createdData: '02/10/1899',
-                note: '10.0'
-            }
-        ]
-    }
+    const userOpenModal = () => {
+        setUserSelection(3); // Modal Select
+        setModalOpen(true);
+    };
 
     return (
         <ContainerHome>
-            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} />
-            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} />
-            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} />
-            <ContainerCard cardProps={exemp} onButtonClick={handleOpenModal} onCardButtonClick={userOpenModal} />
-            <Modal userSelectedCard={userSelection} isOpen={isModalOpen} content={"Bimestre "+exemp.id} onClose={handleCloseModal} />
+            {apiData.map((data, index) => (
+                <ContainerCard key={index} cardProps={data} onButtonClick={() => handleOpenModal(index + 1)} onCardButtonClick={userOpenModal} />
+            ))}
+            <Modal userSelectedCard={userSelection} isOpen={isModalOpen} content={`Bimestre ${userSelection}`} onClose={handleCloseModal} />
         </ContainerHome>
     );
 };

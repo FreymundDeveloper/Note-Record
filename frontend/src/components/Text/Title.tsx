@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { convertToNormalText } from '../../utils/textUtis';
 
 interface TitleProps {
   contentTitle: string;
@@ -7,7 +8,7 @@ interface TitleProps {
 }
 
 export const Title: React.FC<TitleProps> = ({ contentTitle, modeling }) => {
-  return <StyledTitle modeling={modeling}>{contentTitle}</StyledTitle>;
+  return <StyledTitle modeling={modeling}>{convertToNormalText(contentTitle)}</StyledTitle>;
 };
 
 const StyledTitle = styled.h2<{ modeling: number }>`

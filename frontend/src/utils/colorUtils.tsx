@@ -2,13 +2,13 @@ import { ThemeType } from '../themes/Theme';
 
 export const getCardColor = (title: string, themes: ThemeType) => {
     switch (title) {
-        case 'Biologia':
+        case 'BIOLOGIA':
             return themes.color.biologyCard;
-        case 'Artes':
+        case 'ARTES':
             return themes.color.artCard;
-        case 'Geografia':
+        case 'GEOGRAFIA':
             return themes.color.geographyCard;
-        case 'Sociologia':
+        case 'SOCIOLOGIA':
             return themes.color.sociologyCard;
         default:
             return themes.color.biologyCard;

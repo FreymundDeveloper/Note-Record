@@ -66,6 +66,7 @@ Resultado.init({
 }, {
     sequelize,
     modelName: 'Resultado',
+    timestamps: false,
     indexes: [
         {
             unique: true,

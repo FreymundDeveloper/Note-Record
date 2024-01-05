@@ -14,7 +14,18 @@ app.use(express.json());
 
 app.get('/results', async (req: Request, res: Response) => {
     try {
-        const resultados = await Resultado.findAll();
+        const { bimester } = req.query;
+
+        let whereCondition: Record<string, any> = {};
+
+        if (bimester) {
+            whereCondition.bimestre = bimester;
+        }
+
+        const resultados = await Resultado.findAll({
+            where: whereCondition,
+        });
+
         res.json(resultados);
     } catch (error) {
         res.status(500).json({ error: 'Error fetching results' });

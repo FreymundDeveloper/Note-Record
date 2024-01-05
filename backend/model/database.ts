@@ -1,6 +1,6 @@
 import { Sequelize, DataTypes, Model } from 'sequelize';
 import { v4 as uuidv4 } from 'uuid';
-import path from 'path';
+import * as path from 'path';
 
 const dbPath = path.resolve(__dirname, '..', 'data', 'database.sqlite');
 

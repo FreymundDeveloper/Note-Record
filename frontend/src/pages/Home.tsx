@@ -53,8 +53,8 @@ export const Home: React.FC = () => {
         setUserSelection(1);
     };
 
-    const userOpenModal = () => {
-        setUserSelection(3); // Modal Select
+    const userOpenModal = (containerId: string, selectedCard: number) => {
+        setUserSelection(selectedCard + 1);
         setModalOpen(true);
     };
 

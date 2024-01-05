@@ -15,7 +15,7 @@ export const InputNote: React.FC<InputNoteProps> = ({ value, onChange }) => {
     };
 
     return (
-        <StyledInput type="text" value={value === '0' ? '' : value} onChange={handleInputChange} maxLength={10} />
+        <StyledInput type="text" value={parseFloat(value) <= 0 || parseFloat(value) > 10 ? '' : value} onChange={handleInputChange} maxLength={10} />
     );
 };
 

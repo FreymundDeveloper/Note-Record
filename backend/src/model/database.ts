@@ -44,11 +44,19 @@ Resultado.init({
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        get() {
+            const rawValue: Date = this.getDataValue('criadoEm');
+            return rawValue.toLocaleDateString('pt-BR');
+        },
     },
     atualizadoEm: {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        get() {
+            const rawValue: Date = this.getDataValue('atualizadoEm');
+            return rawValue.toLocaleDateString('pt-BR');
+        },
     },
     id: {
         type: DataTypes.UUID,

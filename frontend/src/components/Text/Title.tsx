@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { convertToNormalText } from '../../utils/textUtis';
+import { convertToNormalText } from '../../utils/textUtils';
 
 interface TitleProps {
   contentTitle: string;

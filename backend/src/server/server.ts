@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import { sequelize, Resultado } from '../model/database';
 import { Op } from 'sequelize';
 import { v4 as uuidv4 } from 'uuid';
+import cors from 'cors';
 
 const app = express();
 const PORT = 3001;
@@ -11,6 +12,7 @@ sequelize.sync({ force: true }).then(() => {
 });
 
 app.use(express.json());
+app.use(cors());
 
 app.get('/results', async (req: Request, res: Response) => {
     try {

@@ -37,6 +37,10 @@ app.get('/results', async (req: Request, res: Response) => {
 app.post('/results', async (req: Request, res: Response) => {
     const { bimestre, disciplina, nota } = req.body;
 
+    if (nota < 0 || nota > 10) {
+        return res.status(400).json({ error: 'Invalid nota value. It should be between 0 and 10' });
+    }
+
     try {
         const [resultado, created] = await Resultado.findOrCreate({
             where: {
@@ -66,6 +70,10 @@ app.post('/results', async (req: Request, res: Response) => {
 app.put('/results/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     const { bimestre, disciplina, nota } = req.body;
+
+    if (nota !== undefined && (nota < 0 || nota > 10)) {
+        return res.status(400).json({ error: 'Invalid nota value. It should be between 0 and 10' });
+    }
 
     try {
         const existingResult = await Resultado.findOne({

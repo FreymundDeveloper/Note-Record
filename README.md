@@ -1,46 +1,42 @@
-# Getting Started with Create React App
+# Note-Record
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Note Record is a note recording application with a personalized interface, linked to a database.
 
-## Available Scripts
+Some technologies used:
 
-In the project directory, you can run:
+* React;
+* Html;
+* CSS(Styled);
+* TypeScript;
+* Jest(Parically);
+* SQLite;
+* Node;
+* Express.
 
-### `npm start`
+## Routes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+All routes are linked to the "localhost:3001/results ..." address. The backend runs on port 3001 and the frontend on port 3000. Below are some examples of shipping data and the routes themselves.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* Post: /results - Body: {"bimestre": "QUARTO", "disciplina": "ARTES","nota": 8.9};
+* Get: /results - QueryParams: {"bimester"};
+* Delete: /results/:bimester/:discipline - Params: {"bimester": "QUARTO", "discipline": "ARTES"};
+* Put: /results/:id - Parms: {"id": "afa60b5e-6a1a-4038-bd71-23e29bdfef19"} - (Not much tested);
 
-### `npm test`
+## Running the app
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Required**: It is necessary to have the SQLite database installed on your machine.
 
-### `npm run build`
+```bash
+# Installation
+$ npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Running
+# Open two terminals and go to "cd ./frontend" in one, and "cd ./backend" in the other. Then run on both:
+$ npm run start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Running Test - Just a rendering test for the application's Main component
+# Go to "cd ./frontend". Then run:
+$ npm run test
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Remind: In the future, standardize yourself in English.

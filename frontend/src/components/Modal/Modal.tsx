@@ -11,8 +11,8 @@ interface ModalProps {
 }
 
 export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard = 1, onClose, bimester }) => {
-    const realNote = content[bimester - 1]?.details[userSelectedCard - 1]?.note;
     const [selectedCard, setSelectedCard] = useState<number>(userSelectedCard)
+    const realNote = content[bimester - 1]?.details[selectedCard - 1]?.note;
 
     useEffect(() => {
         if (selectedCard !== userSelectedCard) setSelectedCard(userSelectedCard);
@@ -36,7 +36,6 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard 
     };
 
     const handleInputChange = (value: string) => {
-        console.log(value)
     };
 
   return (

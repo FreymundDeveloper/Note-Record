@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ButtonAction, Title, CardModal, ButtonClose, Tooltip } from '../../components'
-//import { Theme } from '../../themes/Theme';
 
 interface ModalProps {
     isOpen: boolean;
@@ -12,6 +11,7 @@ interface ModalProps {
 
 export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard = 1, onClose }) => {
     const [selectedCard, setSelectedCard] = useState<number>(userSelectedCard);
+    let realContent = JSON.parse(content)
 
     useEffect(() => {
         if (selectedCard !== userSelectedCard) setSelectedCard(userSelectedCard);
@@ -39,7 +39,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard 
         <ModalContent>
             <ContentSection>
                 <TitleContainer>
-                    <Title contentTitle={content} modeling={1} />
+                    <Title contentTitle={`Bimestre ${realContent.bimesterValue}`} modeling={1} />
                     <Tooltip text="Fechar"><ButtonClose onClose={handleCloseClick} /></Tooltip>
                 </TitleContainer>
                 <CardModal onCardClick={handleCardClick} selectedCard={selectedCard} defaultSelectedCard={selectedCard}></CardModal>

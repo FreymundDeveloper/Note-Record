@@ -32,7 +32,11 @@ const Container = styled.div`
     align-items: center;
     padding: 10px;
     margin-bottom: 1px;
-    width: 100%;
+    width: 800px;
+
+    @media (max-width: 548px) {
+      width: 400px
+  }
 `;
 
 const TitleContainer = styled.div`

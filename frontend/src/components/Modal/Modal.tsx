@@ -42,7 +42,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard 
                     <Title contentTitle={`Bimestre ${realContent.bimesterValue}`} modeling={1} />
                     <Tooltip text="Fechar"><ButtonClose onClose={handleCloseClick} /></Tooltip>
                 </TitleContainer>
-                <CardModal onCardClick={handleCardClick} selectedCard={selectedCard} defaultSelectedCard={selectedCard}></CardModal>
+                <CardModal onCardClick={handleCardClick} selectedCard={selectedCard} />
             </ContentSection>
             <ButtonSection>
                 <Tooltip text="Salvar Nota"><ButtonAction onClick={handleConfirmClick} sized={'modal'}>Confirmar</ButtonAction></Tooltip>

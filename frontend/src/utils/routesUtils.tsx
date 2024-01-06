@@ -41,16 +41,25 @@ export const reorderData = (dataArray: any[], order: string[] = ['BIOLOGIA', 'AR
     return reorderedDataArray;
 };
 
-export const mapBimesterStringToNumber = (bimester: string) => {
+export const convertToNumber = (value: string | number): any => {
+    if (typeof value === 'number') {
+        return value;
+    }
+
+    const parsedValue = parseFloat(value as string);
+    return isNaN(parsedValue) ? 0 : parsedValue;
+};
+
+export const maperBimester = (bimester: number) => {
     switch (bimester) {
-        case "PRIMEIRO":
-            return 1;
-        case "SEGUNDO":
-            return 2;
-        case "TERCEIRO":
-            return 3;
-        case "QUARTO":
-            return 4;
+        case 1:
+            return "PRIMEIRO";
+        case 2:
+            return "SEGUNDO";
+        case 3:
+            return "TERCEIRO";
+        case 4:
+            return "QUARTO";
         default:
             return 1;
     }

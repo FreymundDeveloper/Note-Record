@@ -27,12 +27,18 @@ export const CardModal: React.FC<CardModalProps> = ({ onCardClick, selectedCard,
         setLocalSelectedCard(value);
     };
 
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setInputValue(value);
+
+        if (onInputChange) {
+            onInputChange(value);
+        }
+    };
+
     useEffect(() => {
         setInputValue(currentNote)
-        if (onInputChange) {
-            onInputChange(inputValue);
-        }
-    }, [currentNote, onInputChange]);
+    }, [currentNote]);
 
     return (
         <ContentContainer>
@@ -48,7 +54,7 @@ export const CardModal: React.FC<CardModalProps> = ({ onCardClick, selectedCard,
             <TitleContainer moreSpaced={true}>
                 <Title contentTitle={"Nota"} modeling={3} />
             </TitleContainer>
-            <InputNote value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+            <InputNote value={inputValue} onChange={handleInputChange} />
         </ContentContainer>
     );
 };

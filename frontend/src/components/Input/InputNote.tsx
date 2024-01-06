@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 interface InputNoteProps {
@@ -7,11 +7,17 @@ interface InputNoteProps {
 }
 
 export const InputNote: React.FC<InputNoteProps> = ({ value, onChange }) => {
+    const [isClicked, setIsClicked] = useState(false);
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const regex = /^-?\d*\.?\d*$/;
         if (regex.test(e.target.value) || e.target.value === '') {
             onChange(e);
         }
+    };
+
+    const handleInputClick = () => {
+        onChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>);
     };
 
     const disabledControl = () => {
@@ -20,7 +26,14 @@ export const InputNote: React.FC<InputNoteProps> = ({ value, onChange }) => {
     }
 
     return (
-        <StyledInput type="text" value={parseFloat(value) <= 0 || parseFloat(value) > 10 ? '' : value} onChange={handleInputChange} maxLength={5} disabled={disabledControl()} />
+        <StyledInput
+            type="text"
+            value={parseFloat(value) <= 0 || parseFloat(value) > 10 ? '' : value}
+            onChange={handleInputChange}
+            onClick={handleInputClick}
+            maxLength={5}
+            disabled={disabledControl()}
+        />
     );
 };
 

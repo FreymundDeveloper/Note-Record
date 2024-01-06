@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ButtonAction, Title, CardModal, ButtonClose, Tooltip } from '../../components'
+import { convertToNumber, maperBimester } from '../../utils/routesUtils';
+import axios from 'axios';
+
+interface Detail {
+    discipline: string;
+    note: string;
+  }
 
 interface ModalProps {
     isOpen: boolean;
@@ -11,18 +18,48 @@ interface ModalProps {
 }
 
 export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard = 1, onClose, bimester }) => {
-    const [selectedCard, setSelectedCard] = useState<number>(userSelectedCard)
+    const [selectedCard, setSelectedCard] = useState<number>(userSelectedCard);
+    const [currentNote, setCurrentNote] = useState<string>("");
     const realNote = content[bimester - 1]?.details[selectedCard - 1]?.note;
+    const realDicipline = content[bimester - 1]?.details[selectedCard - 1]?.discipline;
+    const realBimester = maperBimester(bimester);
 
     useEffect(() => {
         if (selectedCard !== userSelectedCard) setSelectedCard(userSelectedCard);
     }, [userSelectedCard, content]);
+
+    const handleSaveNote = () => {//<-N adiciona a comb
+        const existingData: Detail[] = content[bimester - 1]?.details || [];
+
+        const isCombinationDuplicate = existingData.some(
+        (entry) => entry?.discipline === realDicipline && entry?.note !== ''
+        );
+
+        if (isCombinationDuplicate) {
+            console.error('Error: Bimestre and Discipline combination already exists with a registered note.');
+            return;
+        }
+
+        axios.post('http://localhost:3001/results', {
+            bimestre: realBimester,
+            disciplina: realDicipline,
+            nota: currentNote,
+        })
+        .then(response => {
+            console.log('Note save:', response.data);
+            setCurrentNote("")
+        })
+        .catch(error => {
+            console.error('Errot to save note:', error);
+        });
+    };
 
     const handleCardClick = (value: number) => {
         setSelectedCard(value);
     };
 
     const handleConfirmClick = () => {
+        handleSaveNote()
         if (selectedCard < 4) {
             handleCardClick(selectedCard ? selectedCard + 1 : 1);
         } else {
@@ -36,6 +73,9 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard 
     };
 
     const handleInputChange = (value: string) => {
+        setCurrentNote(convertToNumber(value));
+        console.log(currentNote)
+        console.log("Foi")
     };
 
   return (

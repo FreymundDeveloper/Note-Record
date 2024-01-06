@@ -8,9 +8,9 @@ import { getCardColor } from '../../utils/colorUtils';
 import { Tooltip } from '../Text/Tooltip';
 
 interface ContainerNoteProps {
-  title: string;
-  theme?: ThemeType;
-  note: string;
+    title: string;
+    theme?: ThemeType;
+    note: string;
 }
 
 export const ContainerNote: React.FC<ContainerNoteProps> = ({ title, theme, note }) => {
@@ -37,21 +37,21 @@ export const ContainerNote: React.FC<ContainerNoteProps> = ({ title, theme, note
 };
 
 const NoteContainerStyled = styled.div<{ title: string; theme: ThemeType; noteColor: string }>`
-  display: flex;
-  align-items: center;
-  background-color: ${(props) => darken(0.3, getCardColor(props.title, props.theme))};
-  margin-bottom: 0;
-  height: 40px;
+    display: flex;
+    align-items: center;
+    background-color: ${(props) => darken(0.3, getCardColor(props.title, props.theme))};
+    margin-bottom: 0;
+    height: 40px;
 `;
 
 const NoteIcon = styled.span<{ color: string }>`
-  font-size: 20px;
-  margin-left: 10px;
-  margin-right: 5px;
-  color: ${(props) => props.color};
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 5px;
+    color: ${(props) => props.color};
 `;
 
 const NoteLabel = styled.div<{ color: string }>`
-  font-size: 14px;
-  color: ${(props) => props.color};
+    font-size: 14px;
+    color: ${(props) => props.color};
 `;

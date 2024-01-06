@@ -39,4 +39,6 @@ $ npm run start
 $ npm run test
 ```
 
+**Obs**: Make sure the Backend is running before starting the Frontend, otherwise bugs may occur.
+
 Remind: In the future, standardize content in English.

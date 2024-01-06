@@ -6,6 +6,7 @@ import { adaptToEnglish, createEmptyDetails } from '../utils/routesUtils';
 export const Home: React.FC = () => {
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
     const [userSelection, setUserSelection] = useState<number>(1);
+    const [bimesterValue, setBimesterValue] = useState<number>(1);
     const [apiData, setApiData] = useState<any[]>([]);
 
     useEffect(() => {
@@ -43,8 +44,8 @@ export const Home: React.FC = () => {
         fetchData();
     }, []);
 
-    const handleOpenModal = (selectedCard: number) => {
-        setUserSelection(selectedCard);
+    const handleOpenModal = (id: string) => {
+        setBimesterValue(parseFloat(id));
         setModalOpen(true);
     };
 
@@ -53,17 +54,18 @@ export const Home: React.FC = () => {
         setUserSelection(1);
     };
 
-    const userOpenModal = (containerId: string, selectedCard: number) => {
+    const userOpenModal = ( id: string, selectedCard: number) => {
         setUserSelection(selectedCard + 1);
+        setBimesterValue(parseFloat(id));
         setModalOpen(true);
     };
 
     return (
         <ContainerHome>
             {apiData.map((data, index) => (
-                <ContainerCard key={index} cardProps={data} onButtonClick={() => handleOpenModal(index + 1)} onCardButtonClick={userOpenModal} />
+                <ContainerCard key={index} cardProps={data} onButtonClick={(id) => handleOpenModal(id)} onCardButtonClick={userOpenModal} />
             ))}
-            <Modal userSelectedCard={userSelection} isOpen={isModalOpen} content={`Bimestre ${userSelection}`} onClose={handleCloseModal} />
+            <Modal userSelectedCard={userSelection} isOpen={isModalOpen} content={`Bimestre ${bimesterValue}`} onClose={handleCloseModal} />
         </ContainerHome>
     );
 };

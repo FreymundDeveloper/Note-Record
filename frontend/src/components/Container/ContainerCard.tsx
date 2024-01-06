@@ -10,7 +10,7 @@ interface CardProps {
 interface ContainerCardProps {
     cardProps: CardProps;
     onCardButtonClick: (containerId: string, index: number) => void;
-    onButtonClick: () => void;
+    onButtonClick: (id: string) => void;
 }
 
 export const ContainerCard: React.FC<ContainerCardProps> = ({ cardProps, onCardButtonClick, onButtonClick }) => {
@@ -18,7 +18,7 @@ export const ContainerCard: React.FC<ContainerCardProps> = ({ cardProps, onCardB
 
     return (
         <Container>
-            <ContainerTopic content={"Bimestre " + id} cardText={"Lançar Nota"} onButtonClick={onButtonClick} />
+            <ContainerTopic content={"Bimestre " + id} cardText={"Lançar Nota"} onButtonClick={() => onButtonClick(id)} />
             <CardsContainer>
                 {details.map((detail, index) => (
                     <CardMain key={index} title={detail.discipline} data={detail.createdData} note={detail.note}

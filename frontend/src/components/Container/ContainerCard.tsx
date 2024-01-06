@@ -21,7 +21,7 @@ export const ContainerCard: React.FC<ContainerCardProps> = ({ cardProps, onCardB
             <ContainerTopic content={"Bimestre " + id} cardText={"Lançar Nota"} onButtonClick={() => onButtonClick(id)} />
             <CardsContainer>
                 {details.map((detail, index) => (
-                    <CardMain key={index} title={detail.discipline} data={detail.createdData} note={detail.note}
+                    <CardMain key={index} title={detail.discipline} data={detail.createdData} note={detail.note} id={id}
                         onButtonClick={() => onCardButtonClick(id, index)} />
                 ))}
             </CardsContainer>

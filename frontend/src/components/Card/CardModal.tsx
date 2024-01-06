@@ -22,7 +22,6 @@ export const CardModal: React.FC<CardModalProps> = ({ onCardClick, selectedCard,
     const [localSelectedCard, setLocalSelectedCard] = useState<number | null>(selectedCard);
 
     const handleCardClick = (value: number) => {
-        //setInputValue("");
         onCardClick(value);
         setLocalSelectedCard(value);
     };

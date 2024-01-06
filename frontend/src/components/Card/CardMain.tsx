@@ -1,23 +1,36 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { maperBimester } from '../../utils/routesUtils';
 import { ThemeType } from '../../themes/Theme';
 import { getCardColor } from '../../utils/colorUtils';
 import { Title, ButtonDelete, ContainerNote, Tooltip } from '../../components';
 
 interface CardMainProps {
-  title: string;
-  data: string;
-  note: string;
-  onButtonClick: () => void;
+    title: string;
+    data: string;
+    note: string;
+    id: string;
+    onButtonClick: () => void;
 }
 
-export const CardMain: React.FC<CardMainProps> = ({ title, data, note, onButtonClick }) => {
+export const CardMain: React.FC<CardMainProps> = ({ title, data, note, id, onButtonClick }) => {
     const [clearNote, setclearNote] = useState<string>(note);
     const formattedData = data.trim() === '' ? '??/??/????' : data;
 
-    const callDelete = () => {
-        setclearNote("")
-        //API Delete Logic ...
+    const callDelete = async () => {
+        try {
+            if (formattedData !== '??/??/????') {
+                await axios.delete(`http://localhost:3001/results/${maperBimester(parseFloat(id))}/${title}`);
+                setclearNote("");
+
+                setTimeout(() => {
+                  window.location.reload();
+                }, 1000);
+              }
+        } catch (error) {
+            console.error('Error to delete:', error);
+        }
     }
 
     return (

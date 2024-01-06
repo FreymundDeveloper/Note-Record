@@ -39,4 +39,4 @@ $ npm run start
 $ npm run test
 ```
 
-Remind: In the future, standardize yourself in English.
+Remind: In the future, standardize content in English.

@@ -14,8 +14,13 @@ export const InputNote: React.FC<InputNoteProps> = ({ value, onChange }) => {
         }
     };
 
+    const disabledControl = () => {
+        if (value === "") return false;
+        else return value?.length === undefined;
+    }
+
     return (
-        <StyledInput type="text" value={parseFloat(value) <= 0 || parseFloat(value) > 10 ? '' : value} onChange={handleInputChange} maxLength={10} />
+        <StyledInput type="text" value={parseFloat(value) <= 0 || parseFloat(value) > 10 ? '' : value} onChange={handleInputChange} maxLength={5} disabled={disabledControl()} />
     );
 };
 

@@ -20,6 +20,7 @@ interface ModalProps {
 export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard = 1, onClose, bimester }) => {
     const [selectedCard, setSelectedCard] = useState<number>(userSelectedCard);
     const [currentNote, setCurrentNote] = useState<string>("");
+    const [existingData, setExistingData] = useState<Detail[]>(content[bimester - 1]?.details || []);
     const realNote = content[bimester - 1]?.details[selectedCard - 1]?.note;
     const realDicipline = content[bimester - 1]?.details[selectedCard - 1]?.discipline;
     const realBimester = maperBimester(bimester);
@@ -28,11 +29,10 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard 
         if (selectedCard !== userSelectedCard) setSelectedCard(userSelectedCard);
     }, [userSelectedCard, content]);
 
-    const handleSaveNote = () => {//<-N adiciona a comb
-        const existingData: Detail[] = content[bimester - 1]?.details || [];
-
-        const isCombinationDuplicate = existingData.some(
-        (entry) => entry?.discipline === realDicipline && entry?.note !== ''
+    const handleSaveNote = () => {
+        const dataValid: Detail[] = existingData.length > 0 ? existingData : content[bimester - 1]?.details || [];
+        const isCombinationDuplicate = dataValid.some(
+            (entry) => entry?.discipline === realDicipline && entry?.note !== ''
         );
 
         if (isCombinationDuplicate) {
@@ -40,14 +40,26 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard 
             return;
         }
 
+        console.log(existingData, realDicipline)
+
         axios.post('http://localhost:3001/results', {
             bimestre: realBimester,
             disciplina: realDicipline,
-            nota: currentNote,
+            nota: currentNote === "" ? 0 : currentNote,
         })
         .then(response => {
             console.log('Note save:', response.data);
-            setCurrentNote("")
+            setCurrentNote("0")
+
+            setExistingData(prevData => {
+                const index = prevData.findIndex(entry => entry.discipline === realDicipline);
+
+                if (index !== -1) {
+                    return prevData.map((entry, i) => (i === index ? { ...entry, note: currentNote } : entry));
+                } else {
+                    return [...prevData, { discipline: realDicipline, note: currentNote }];
+                }
+            });
         })
         .catch(error => {
             console.error('Errot to save note:', error);
@@ -62,6 +74,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard 
         handleSaveNote()
         if (selectedCard < 4) {
             handleCardClick(selectedCard ? selectedCard + 1 : 1);
+            setCurrentNote("0")
         } else {
             handleCloseClick();
         }
@@ -70,12 +83,11 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard 
     const handleCloseClick = () => {
         setSelectedCard(userSelectedCard);
         onClose();
+        window.location.reload();
     };
 
     const handleInputChange = (value: string) => {
         setCurrentNote(convertToNumber(value));
-        console.log(currentNote)
-        console.log("Foi")
     };
 
   return (

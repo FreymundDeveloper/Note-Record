@@ -7,8 +7,6 @@ interface InputNoteProps {
 }
 
 export const InputNote: React.FC<InputNoteProps> = ({ value, onChange }) => {
-    const [isClicked, setIsClicked] = useState(false);
-
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const regex = /^-?\d*\.?\d*$/;
         if (regex.test(e.target.value) || e.target.value === '') {
@@ -27,13 +25,8 @@ export const InputNote: React.FC<InputNoteProps> = ({ value, onChange }) => {
 
     return (
         <StyledInput
-            type="text"
-            value={parseFloat(value) <= 0 || parseFloat(value) > 10 ? '' : value}
-            onChange={handleInputChange}
-            onClick={handleInputClick}
-            maxLength={5}
-            disabled={disabledControl()}
-        />
+            type="text" value={parseFloat(value) <= 0 || parseFloat(value) > 10 ? "0" : value} onChange={handleInputChange} onClick={handleInputClick}
+            maxLength={5} disabled={disabledControl()} />
     );
 };
 

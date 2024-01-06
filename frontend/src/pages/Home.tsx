@@ -60,16 +60,12 @@ export const Home: React.FC = () => {
         setModalOpen(true);
     };
 
-    const formatModalContent = (): string => {
-        return JSON.stringify({ apiData, bimesterValue });
-    };
-
     return (
         <ContainerHome>
             {apiData.map((data, index) => (
                 <ContainerCard key={index} cardProps={data} onButtonClick={(id) => handleOpenModal(id)} onCardButtonClick={userOpenModal} />
             ))}
-            <Modal userSelectedCard={userSelection} isOpen={isModalOpen} content={formatModalContent()} onClose={handleCloseModal} />
+            <Modal userSelectedCard={userSelection} isOpen={isModalOpen} content={apiData} bimester={bimesterValue} onClose={handleCloseModal} />
         </ContainerHome>
     );
 };

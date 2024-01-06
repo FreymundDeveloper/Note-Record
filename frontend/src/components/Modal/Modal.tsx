@@ -4,18 +4,19 @@ import { ButtonAction, Title, CardModal, ButtonClose, Tooltip } from '../../comp
 
 interface ModalProps {
     isOpen: boolean;
-    content: string;
+    content: any;
+    bimester: number
     userSelectedCard?: number;
     onClose: () => void;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard = 1, onClose }) => {
-    const [selectedCard, setSelectedCard] = useState<number>(userSelectedCard);
-    let realContent = JSON.parse(content)
+export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard = 1, onClose, bimester }) => {
+    const realNote = content[bimester - 1]?.details[userSelectedCard - 1]?.note;
+    const [selectedCard, setSelectedCard] = useState<number>(userSelectedCard)
 
     useEffect(() => {
         if (selectedCard !== userSelectedCard) setSelectedCard(userSelectedCard);
-    }, [userSelectedCard]);
+    }, [userSelectedCard, content]);
 
     const handleCardClick = (value: number) => {
         setSelectedCard(value);
@@ -34,15 +35,19 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, content, userSelectedCard 
         onClose();
     };
 
+    const handleInputChange = (value: string) => {
+        console.log(value)
+    };
+
   return (
     <ModalOverlay isOpen={isOpen}>
         <ModalContent>
             <ContentSection>
                 <TitleContainer>
-                    <Title contentTitle={`Bimestre ${realContent.bimesterValue}`} modeling={1} />
+                    <Title contentTitle={`Bimestre ${bimester}`} modeling={1} />
                     <Tooltip text="Fechar"><ButtonClose onClose={handleCloseClick} /></Tooltip>
                 </TitleContainer>
-                <CardModal onCardClick={handleCardClick} selectedCard={selectedCard} />
+                <CardModal onCardClick={handleCardClick} selectedCard={selectedCard} onInputChange={handleInputChange} currentNote={realNote} />
             </ContentSection>
             <ButtonSection>
                 <Tooltip text="Salvar Nota"><ButtonAction onClick={handleConfirmClick} sized={'modal'}>Confirmar</ButtonAction></Tooltip>

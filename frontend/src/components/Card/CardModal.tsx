@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { darken } from 'polished';
 import styled from 'styled-components';
-import { Title, InputNote } from '../../components'
+import { Title, InputNote } from '../../components';
 
 interface CardModalProps {
     onCardClick: (value: number) => void;
     selectedCard: number;
+    currentNote: string;
+    onInputChange?: (value: string) => void; // Nova propriedade para retornar o valor do inputValue
 }
 
 const CardColors = {
@@ -15,37 +17,40 @@ const CardColors = {
     4: 'sociologyCard',
 };
 
-export const CardModal: React.FC<CardModalProps> = ({ onCardClick, selectedCard }) => {
+export const CardModal: React.FC<CardModalProps> = ({ onCardClick, selectedCard, onInputChange, currentNote }) => {
     const [inputValue, setInputValue] = useState<string>("");
     const [localSelectedCard, setLocalSelectedCard] = useState<number | null>(selectedCard);
 
     const handleCardClick = (value: number) => {
-        setInputValue("");
+        //setInputValue("");
         onCardClick(value);
         setLocalSelectedCard(value);
     };
 
     useEffect(() => {
-        setInputValue("");
-    }, [selectedCard]);
+        setInputValue(currentNote)
+        if (onInputChange) {
+            onInputChange(inputValue);
+        }
+    }, [currentNote, onInputChange]);
 
-  return (
-    <ContentContainer>
-        <TitleContainer moreSpaced={false}>
-            <Title contentTitle={"Disciplina"} modeling={2} />
-        </TitleContainer>
-        <CardContainer>
-            <Card color={CardColors[1]} onClick={() => handleCardClick(1)} isSelected={selectedCard === 1}><span>Biologia</span></Card>
-            <Card color={CardColors[2]} onClick={() => handleCardClick(2)} isSelected={selectedCard === 2}><span>Artes</span></Card>
-            <Card color={CardColors[3]} onClick={() => handleCardClick(3)} isSelected={selectedCard === 3}><span>Geografia</span></Card>
-            <Card color={CardColors[4]} onClick={() => handleCardClick(4)} isSelected={selectedCard === 4}><span>Sociologia</span></Card>
-        </CardContainer>
-        <TitleContainer moreSpaced={true}>
-            <Title contentTitle={"Nota"} modeling={3} />
-        </TitleContainer>
-        <InputNote value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
-    </ContentContainer>
-  );
+    return (
+        <ContentContainer>
+            <TitleContainer moreSpaced={false}>
+                <Title contentTitle={"Disciplina"} modeling={2} />
+            </TitleContainer>
+            <CardContainer>
+                <Card color={CardColors[1]} onClick={() => handleCardClick(1)} isSelected={selectedCard === 1}><span>Biologia</span></Card>
+                <Card color={CardColors[2]} onClick={() => handleCardClick(2)} isSelected={selectedCard === 2}><span>Artes</span></Card>
+                <Card color={CardColors[3]} onClick={() => handleCardClick(3)} isSelected={selectedCard === 3}><span>Geografia</span></Card>
+                <Card color={CardColors[4]} onClick={() => handleCardClick(4)} isSelected={selectedCard === 4}><span>Sociologia</span></Card>
+            </CardContainer>
+            <TitleContainer moreSpaced={true}>
+                <Title contentTitle={"Nota"} modeling={3} />
+            </TitleContainer>
+            <InputNote value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+        </ContentContainer>
+    );
 };
 
 const ContentContainer = styled.div`

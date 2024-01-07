@@ -8,7 +8,7 @@ Some technologies used:
 * Html;
 * CSS(Styled);
 * TypeScript;
-* Jest(Parically);
+* Jest(Partially);
 * SQLite;
 * Node;
 * Express.
